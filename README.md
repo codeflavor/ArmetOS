@@ -1,4 +1,9 @@
 # ArmetOS
 
-A [Fedora](https://getfedora.org/) flavor for provisioning the cloudflavor
-infrastructure.  
+A hardened operating system based on [Fedora](https://getfedora.org/) that is
+used to deploy the Cloudflavor infrastructure.
+
+##### Features
+* Auto-updates
+* Auto-discovery
+* Uses CRI-O instead of Docker
