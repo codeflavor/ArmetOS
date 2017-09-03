@@ -5,5 +5,5 @@ used to deploy the Cloudflavor infrastructure.
 
 ##### Features
 * Auto-updates
-* Auto-discovery
+* Auto-discovery with [Consul](https://consul.io)
 * Uses CRI-O instead of Docker
