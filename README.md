@@ -6,4 +6,4 @@ used to deploy the Cloudflavor infrastructure.
 ##### Features
 * Auto-updates
 * Auto-discovery with [Consul](https://consul.io)
-* Uses CRI-O instead of Docker
+* Choose between [CRI-O](https://github.com/kubernetes-incubator/cri-o) and [rkt](https://github.com/rkt/rkt) as the default container engine
