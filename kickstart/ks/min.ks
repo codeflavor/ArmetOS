@@ -1,20 +1,31 @@
+text
+skipx
+install
+
 lang en_US.UTF-8
 keyboard us
 timezone Europe/Berlin
+
+url --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-27&arch=x86_64
+repo --name=updates --baseurl=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/updates/27/x86_64/
+
 auth --useshadow --enablemd5
+authconfig --enableshadow --passalgo=sha512
+
 selinux --enforcing
 firewall --enabled --service=mdns
-text
+network --onboot=yes --device=eth0 --bootproto=dhcp --noipv6 --activate
+
+rootpw --plaintext 123123
+user --groups=wheel --name armet --password=123123
+
+
 clearpart --all
 autopart --noswap --nohome
-skipx
-repo --name=fedora --baseurl=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/releases/26/Everything/x86_64/os/
-repo --name=updates --baseurl=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/updates/26/x86_64/
-#repo --name=updates-testing --baseurl=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/updates/testing/26/x86_64/
-url --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-26&arch=x86_64
 
-rootpw --iscrypted s0ufrQlioP4xQ
 %packages
 @core
 %end
+
+
 reboot
