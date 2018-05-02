@@ -10,7 +10,7 @@
       "iso_checksum_type": "sha256",
       "accelerator": "kvm",
       "disk_size": 30000,
-      "ssh_username": "test",
+      "ssh_username": "armet",
       "ssh_password": "123123",
       "ssh_port": 22,
       "ssh_timeout": "3000s",
