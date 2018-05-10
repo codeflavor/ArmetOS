@@ -27,10 +27,9 @@ user --groups=wheel --name armet --password=123123
 zerombr
 clearpart --all
 autopart --noswap --nohome
-#services --enabled=sshd,acpid,cloud-init
+services --enabled=sshd,acpid
 
 %packages --excludedocs --instLangs=en
->>>>>>> armetos: enable qcow2 image
 @core
 -@conflicts
 openssh-server
