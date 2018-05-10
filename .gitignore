@@ -1,3 +1,6 @@
 base
 .venv
 activate
+config.iso
+packer_cache
+armetos
