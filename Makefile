@@ -1,9 +1,16 @@
-IMAGE_URI=https://download.fedoraproject.org/pub/fedora/linux/releases/26/Server/x86_64/iso/Fedora-Server-netinst-x86_64-26-1.5.iso
+OS_VERSION=0.1.0-alpha.3
+OS_CODENAME=Soggy-Sock
+PACKER_LOG=1
+
+export OS_VERSION OS_CODENAME PACKER_LOG
 
 .PHONY: clean
 clean:
-	@rm -rf base
+	@rm -rf armetos
 
-get:
-	@mkdir -p base
-	@wget -P base ${IMAGE_URI}
+build: clean
+	@packer build ArmetOS-qcow2.json
+
+compress:
+	tar -czvf ArmetOS-${OS_CODENAME}-${OS_VERSION}.x86_64.tar.gz ./armetos/qemu/x86_64/soggy-sock/ArmetOS-Soggy-Sock-${OS_VERSION}.x86_64.qcow2
+	xz ArmetOS-${OS_CODENAME}-${OS_VERSION}.x86_64.tar.gz
