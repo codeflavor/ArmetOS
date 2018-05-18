@@ -7,8 +7,7 @@ lang en_US.UTF-8
 keyboard us
 timezone Europe/Berlin
 
-url --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-28&arch=x86_64 
-repo --name=updates --baseurl=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/updates/28/Modular/x86_64/
+ostreesetup --osname="centos-atomic-host" --remote="centos-atomic-continuous" --ref="centos-atomic-host/7/x86_64/standard" --url="https://ci.centos.org/artifacts/sig-atomic/centos-continuous/ostree/repo/" --nogpg
 
 auth --useshadow --enablemd5
 authconfig 
@@ -20,14 +19,14 @@ bootloader --timeout=1 --append="no_timer_check console=tty1 console=ttyS0,11520
 network --bootproto=dhcp --activate --onboot=on --hostname ArmetOS
 
 rootpw --plaintext 123123
-user --groups=wheel --name armet --password=123123
+user --groups=wheel --name armet --password=123123 --homedir=/var/home/armet
 
 zerombr
 clearpart --all
 part /boot --size 300 --fstype=xfs
 part pv.01 --grow
 volgroup armet-vg pv.01
-logvol / --vgname=armet-vg --size=3000 --name=armet-rootvol --fstype=xfs
+logvol / --vgname=armet-vg --size=3000 --name=armet-rootvol --fstype=xfs 
 logvol /var --vgname=armet-vg --size=500 --name=armet-varvol --fstype=xfs
 
 
@@ -58,6 +57,8 @@ kernel-core
 
 
 %post
+mkdir -p /var/home/armet
+chown armet -R /var/home/armet 
 # setup systemd to boot to the right runlevel
 echo -n "Setting default runlevel to multiuser text mode"
 rm -f /etc/systemd/system/default.target

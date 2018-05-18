@@ -7,9 +7,9 @@ sudo systemctl enable cloud-final
 
 sudo systemctl daemon-reload
 
-sudo systemctl start cloud-init
-sudo systemctl start cloud-init-local
-sudo systemctl start cloud-config
-sudo systemctl start cloud-final
+#sudo systemctl start cloud-init
+#sudo systemctl start cloud-init-local
+#sudo systemctl start cloud-config
+#sudo systemctl start cloud-final
 
 
