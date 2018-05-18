@@ -12,5 +12,6 @@ build: clean
 	@packer build ArmetOS-qcow2.json
 
 compress:
-	tar -czvf ArmetOS-${OS_CODENAME}-${OS_VERSION}.x86_64.tar.gz ./armetos/qemu/x86_64/soggy-sock/ArmetOS-Soggy-Sock-${OS_VERSION}.x86_64.qcow2
-	xz ArmetOS-${OS_CODENAME}-${OS_VERSION}.x86_64.tar.gz
+	@rm -rf ArmetOS-${OS_CODENAME}-${OS_VERSION}.x86_64.tar.gz.xz || true
+	@tar -czvf ArmetOS-${OS_CODENAME}-${OS_VERSION}.x86_64.tar.gz ./armetos/qemu/x86_64/soggy-sock/ArmetOS-Soggy-Sock-${OS_VERSION}.x86_64.qcow2
+	@xz ArmetOS-${OS_CODENAME}-${OS_VERSION}.x86_64.tar.gz
