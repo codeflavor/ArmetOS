@@ -9,15 +9,15 @@
 	    "type": "qemu",
 	    "headless": "true",
 	    "communicator": "ssh",
-	    "iso_url": "https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/28/Server/x86_64/iso/Fedora-Server-netinst-x86_64-28-1.1.iso",
-	    "iso_checksum_url": "https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/28/Server/x86_64/iso/Fedora-Server-28-1.1-x86_64-CHECKSUM",
-	    "iso_checksum_type": "sha256",
+	    "iso_url": "http://cloud.centos.org/centos/7/atomic/images/CentOS-Atomic-Host-7-Installer.iso",
+	    "iso_checksum_type": "none",
 	    "accelerator": "kvm",
 	    "disk_size": 8000,
-	    "ssh_username": "armet",
+	    "ssh_username": "root",
 	    "ssh_password": "123123",
 	    "ssh_port": 22,
 	    "ssh_timeout": "9000s",
+	    "ssh_pty" : true,
 	    "output_directory": "armetos/qemu/x86_64/soggy-sock",
 	    "http_directory": "kickstart/ks",
 	    "http_port_min": 10082,
@@ -42,7 +42,8 @@
     "provisioners": [
 	{
 	    "script": "provisioner/enable_services.sh",
-	    "type": "shell"
+	    "type": "shell",
+	    "expect_disconnect": true
 	}
     ]
 }
