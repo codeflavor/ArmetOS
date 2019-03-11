@@ -1,49 +1,51 @@
 {
     "variables": {
-	"os_codename": "{{env `OS_CODENAME`}}",
-	"os_version": "{{env `OS_VERSION`}}"
+        "os_codename": "{{env `OS_CODENAME`}}",
+        "os_version": "{{env `OS_VERSION`}}"
     },
-    "builders":
-    [
-	{
-	    "type": "qemu",
-	    "headless": "true",
-	    "communicator": "ssh",
-	    "iso_url": "http://cloud.centos.org/centos/7/atomic/images/CentOS-Atomic-Host-7-Installer.iso",
-	    "iso_checksum_type": "none",
-	    "accelerator": "kvm",
-	    "disk_size": 8000,
-	    "ssh_username": "root",
-	    "ssh_password": "123123",
-	    "ssh_port": 22,
-	    "ssh_timeout": "9000s",
-	    "ssh_pty" : true,
-	    "output_directory": "armetos/qemu/x86_64/soggy-sock",
-	    "http_directory": "kickstart/ks",
-	    "http_port_min": 10082,
-	    "http_port_max": 10089,
-	    "ssh_host_port_min": 2222,
-	    "ssh_host_port_max": 2229,
-	    "vm_name": "ArmetOS-{{user `os_codename`}}-{{user `os_version`}}.x86_64.qcow2",
-	    "vnc_bind_address": "0.0.0.0",
-	    "net_device": "virtio-net",
-	    "disk_interface": "virtio",
-	    "boot_wait": "5s",
-	    "boot_command":  [
-		"<tab><wait>",
-		" ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/min.ks<enter>"
-	    ],
-	    "qemuargs": [
-		[ "-m", "4048m" ]
-	    ]
-	}
+    "builders": [
+        {
+            "type": "qemu",
+            "headless": "true",
+            "communicator": "ssh",
+            "iso_url": "https://cloud.centos.org/centos/7/atomic/images/CentOS-Atomic-Host-7.1801-01-Installer.iso",
+            "iso_checksum_type": "sha256",
+            "iso_checksum": "6a87cbca0cb7ce52d252928bcf5a740c8741ad414139bc40f3cb1c21f794dd30",
+            "accelerator": "kvm",
+            "disk_size": 8000,
+            "ssh_username": "root",
+            "ssh_password": "123123",
+            "ssh_port": 22,
+            "ssh_timeout": "9000s",
+            "ssh_pty": true,
+            "output_directory": "armetos/qemu/x86_64/soggy-sock",
+            "http_directory": "kickstart/ks",
+            "http_port_min": 10082,
+            "http_port_max": 10089,
+            "ssh_host_port_min": 2222,
+            "ssh_host_port_max": 2229,
+            "vm_name": "ArmetOS-{{user `os_codename`}}-{{user `os_version`}}.x86_64.qcow2",
+            "vnc_bind_address": "0.0.0.0",
+            "net_device": "virtio-net",
+            "disk_interface": "virtio",
+            "boot_wait": "5s",
+            "boot_command": [
+                "<tab><wait>",
+                " ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/min.ks<enter>"
+            ],
+            "qemuargs": [
+                [
+                    "-m",
+                    "4048m"
+                ]
+            ]
+        }
     ],
-
     "provisioners": [
-	{
-	    "script": "provisioner/enable_services.sh",
-	    "type": "shell",
-	    "expect_disconnect": true
-	}
+        {
+            "script": "provisioner/enable_services.sh",
+            "type": "shell",
+            "expect_disconnect": true
+        }
     ]
 }
